@@ -10,14 +10,16 @@ namespace ConsoleApp12
         public string No { get; set; }
         public bool IsOnline { get; set; }
         private int _limit { get; set; }
-        List<Student>  List;
-        List<Group> Grup;
+        public  List<Student>  List;
+        public List<Group> Grup;
         public Categories Category;
         public static int Bp = 100;
         public static int Dp = 100;
         public static int Sl = 100;
-        public string[] NoList;
-        public int GroupCount;
+        public Group()
+        {
+
+        }
         public Group(Categories category, bool isOnline)
         {
             IsOnline = isOnline;
@@ -41,12 +43,17 @@ namespace ConsoleApp12
             }
             Category = category;
         }
-        public void Qrup(Group qrup)
-        {
-
-        }
         public void AddStudent(Student student)
         {
+            if (IsOnline==true)
+            {
+                _limit = 15;
+
+            }
+            else
+            {
+                _limit = 10;
+            }
             if (List.Count < _limit)
             {
                 List.Add(student);
@@ -58,7 +65,7 @@ namespace ConsoleApp12
         }
         public void ShowInfo()
         {
-            Console.WriteLine($"Qrup: {No} IsOnline: {IsOnline} Telebelerin sayi; {List.Count}");
+            Console.WriteLine($"Qrup: {No} IsOnline: {IsOnline} Telebelerin sayi: {List.Count}");
         }
         public void ShowStudents()
         {
@@ -67,11 +74,21 @@ namespace ConsoleApp12
                 Console.WriteLine($"Telebe adi: {item.FullName} Tip: {item.Type}");
             }
         }
-        public void ShowAllStudents()
+        public void ShowGroupStudents(string no)
         {
             foreach (var item in Grup)
             {
-                Console.WriteLine($" Qrup: {item.No}");
+                if (item.No==no)
+                {
+                    ShowInfo();
+                }
+            }
+        }
+        public void ShowAllGroups()
+        {
+            foreach (var item in Grup)
+            {
+                Console.WriteLine($"Qrup No: {item.No} IsOnline: {IsOnline} Telebelerin sayi: {Grup.Count}");
             }
         }
         

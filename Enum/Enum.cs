@@ -4,7 +4,11 @@ using System.Text;
 
 namespace ConsoleApp12.Enum
 {
-    class Enum
+    enum Categories
     {
+        Programming = 1,
+        Design,
+        SystemAdministration
     }
+
 }
